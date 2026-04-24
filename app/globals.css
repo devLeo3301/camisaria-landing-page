@@ -1,26 +1,59 @@
 @import "tailwindcss";
 
+/* ========================================================
+   TEMA: ALFAIATARIA PREMIUM (Old Money Aesthetic)
+   ======================================================== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Cores base (Light Mode) */
+  --background: #F9F9F6; /* Off-white / Linho claro */
+  --foreground: #1A1C20; /* Chumbo profundo quase preto */
+  
+  /* Cores da Marca */
+  --brand-primary: #0F172A; /* Slate 900 - Para botões e destaques fortes */
+  --brand-accent: #8C7A6B;  /* Dourado Fosco / Bege Escuro - Para detalhes finos */
+  --brand-surface: #F0F0EA; /* Fundo de cards sutilmente mais escuro que o background */
+}
+
+/* Modo Escuro Opcional: Tons de "Azul Noite" luxuoso */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0B0E14;
+    --foreground: #F9F9F6;
+    --brand-primary: #F9F9F6;
+    --brand-accent: #A69281;
+    --brand-surface: #151A23;
+  }
 }
 
 @theme inline {
+  /* Injetando nossas variáveis no Tailwind v4 */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-primary: var(--brand-primary);
+  --color-accent: var(--brand-accent);
+  --color-surface: var(--brand-surface);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Configuração de Fontes */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "Playfair Display", "Merriweather", Georgia, serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  
+  /* Suavização de fontes para telas de alta resolução (Retina/OLED) */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Rolagem suave de âncoras */
+  scroll-behavior: smooth;
+}
+
+/* Classe utilitária extra para forçar a fonte de revista nos títulos */
+@layer utilities {
+  .font-heading {
+    font-family: var(--font-serif);
+  }
 }
